@@ -21,8 +21,8 @@
 ```
 
 ### Как запустить.
-1. Preferences. [Скрин с настройкой](https://git.ftc.ru/rjaskina/imposter-gate/-/blob/master/image/Preferences.png)
-2. File -> Project Structure. [Скрин с настройкой](https://git.ftc.ru/rjaskina/imposter-gate/-/blob/master/image/ProjectStructure.png)
+1. Preferences. [Скрин с настройкой](https://github.com/ryaskina/imposter-tcp-gate/blob/main/image/Preferences.png)
+2. File -> Project Structure. [Скрин с настройкой](https://github.com/ryaskina/imposter-tcp-gate/blob/main/image/Project%20Structure.png)
 3. Открыть файл /src/java/com.example.impostergate/ImposterGateApplication. Запустить метод main().
    ```text
    Либо через терминал вызвать:
