@@ -1,0 +1,78 @@
+buildscript {
+	ext {
+		versioningPluginVersion = "2.4.0"
+		springBootVersion = "2.2.2.RELEASE"
+		springDependencyManagementVersion = "1.0.8.RELEASE"
+		lombokVersion = "1.18.2"
+		gsonVersion = "2.8.6"
+		assertjVersion = "3.16.0"
+	}
+	dependencies {
+		classpath "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+		classpath "net.nemerosa:versioning:$versioningPluginVersion"
+	}
+}
+
+plugins {
+	id 'org.springframework.boot' version "$springBootVersion"
+	id 'io.spring.dependency-management' version "$springDependencyManagementVersion"
+	id 'java'
+	id 'application'
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-web-services'
+	implementation 'org.springframework.boot:spring-boot-starter-websocket'
+	implementation "org.assertj:assertj-core:$assertjVersion"
+
+	compile "com.google.code.gson:gson:$gsonVersion"
+	compile "org.springframework.boot:spring-boot-gradle-plugin:$springBootVersion"
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'de.flapdoodle.embed:de.flapdoodle.embed.mongo'
+
+	compileOnly "org.projectlombok:lombok:$lombokVersion"
+}
+
+application {
+	mainClassName = 'com.example.impostergate.ImposterGateApplication'
+	applicationDefaultJvmArgs = ['-Dgreeting.language=en']
+}
+
+defaultTasks 'clean', 'test'
+
+task mocksRunning(type: Test) {
+	useJUnitPlatform {
+		includeTags 'mocksRunning'
+	}
+}
+
+task mocksStopping(type: Test) {
+	useJUnitPlatform {
+		includeTags 'mocksStopping'
+	}
+}
+
+task mocksSetting(type: Test) {
+	useJUnitPlatform {
+		includeTags 'mocksSetting'
+	}
+}
+
+task runMocksTests(type: Test) {
+	useJUnitPlatform {
+		includeTags 'mockTest'
+	}
+}
